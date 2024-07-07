@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  jupyter-exemplo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: jupyter-exemplo
+    ports:
+      - 8888:8888
+    volumes:
+       - .:/home/jovyan
+       - ./kaggle:/root/.kaggle
+    environment:
+      - .env
+    command: >
+      /bin/bash -c "
+      jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root
+      "
